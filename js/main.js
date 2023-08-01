@@ -94,7 +94,7 @@ function cubeFace(facenum) {
 
   let tile=[];
   for (let i=0;i<9;i++) {
-    debugmat = new THREE.MeshBasicMaterial( { color: debugColors[i] , opacity: transparency, transparent: true, wireframe: true,} );
+    debugmat = new THREE.MeshBasicMaterial( { color: debugColors[i] , opacity: transparency, transparent: true, wireframe: false,} );
     if (i==4) {
       tile[i] = new THREE.Mesh( geometry, materials[facenum] );
     } else {
@@ -194,7 +194,7 @@ function mapColors(input) {
     for (let i=0;i<3;i++) { // tiles of corner blocks
       let thisIntFace =  scene.getObjectByName( thisBlock.sides[i]);
       //console.log(thisIntFace.info.face%2);
-      thisIntFace.material = materials[targetBlock.colors[colorRotation(i, 1)]];
+      thisIntFace.material = materials[targetBlock.colors[colorRotation(i, 0)]];
     }
   }
 
@@ -214,7 +214,7 @@ var rotStrings = [
 // ];
 
 var rotpos = 0;
-//window.setInterval(setPositions,1000,rotStrings);
+// window.setInterval(setPositions,1000,rotStrings);
 // window.setTimeout(setPositions,1000,rotStrings);
 // window.setTimeout(setPositions,2010,rotStrings);
 // window.setTimeout(setPositions,3020,rotStrings);
@@ -224,8 +224,8 @@ scene.add(cube);
 function render() {
     requestAnimationFrame( render );
 
-    //cubes.rotation.x += 0.05;
-    cube.rotation.y += 0.01;
+    //cube.rotation.x += 0.01;
+    cube.rotation.y += 0.001;
     renderer.render( scene, camera );
 }
 
